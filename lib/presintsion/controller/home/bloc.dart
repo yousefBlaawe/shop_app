@@ -4,10 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shop_app_clean/presintsion/controller/home/event.dart';
 import 'package:shop_app_clean/presintsion/controller/home/state.dart';
-import 'package:shop_app_clean/presintsion/screens/home_screen/Screens/categories_screen/categories_screen.dart';
-import 'package:shop_app_clean/presintsion/screens/home_screen/Screens/favorite_screen/favorite_screen.dart';
-import 'package:shop_app_clean/presintsion/screens/home_screen/Screens/products_screen/products_Screen.dart';
-import 'package:shop_app_clean/presintsion/screens/home_screen/Screens/setting_screen/setting_screen.dart';
+
+import '../../screens/categories_screen/categories_screen.dart';
+import '../../screens/favorite_screen/favorite_screen.dart';
+import '../../screens/products_screen/products_Screen.dart';
+import '../../screens/setting_screen/setting_screen.dart';
 
 class BlocHome extends Bloc<HomeScreenEvent,HomeState>
 {
@@ -18,10 +19,22 @@ class BlocHome extends Bloc<HomeScreenEvent,HomeState>
   }
   int screenIndex=0;
   List<Widget>lstOfScreen=[
-    ProductsScreen(),
-    CategoriesScreen(),
-    FavoriteScreen(),
-    SettingScreen(),
+    const Padding(
+      padding: EdgeInsets.all(8.0),
+      child: ProductsScreen(),
+    ),
+    const Padding(
+      padding: EdgeInsets.all(8.0),
+      child: CategoriesScreen(),
+    ),
+    const Padding(
+      padding: EdgeInsets.all(8.0),
+      child: FavoriteScreen(),
+    ),
+    const Padding(
+      padding: EdgeInsets.all(8.0),
+      child: SettingScreen(),
+    ),
   ];
   BlocHome():super(InitHomeState()){
     on<ChangeNaveBarEvent>(_changeNavBar);

@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app_clean/presintsion/screens/login_screen/widgets/login_body.dart';
 
 class LoginScreen extends StatelessWidget
 {
-   LoginScreen({super.key});
+   const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

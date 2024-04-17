@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app_clean/presintsion/controller/home/bloc.dart';
@@ -17,7 +16,7 @@ class HomeScreen extends StatelessWidget
     return   Scaffold(
          backgroundColor: Colors.blueGrey[50],
          body:  BlocHome.getObject(context).lstOfScreen[BlocHome.getObject(context).screenIndex],
-         bottomNavigationBar: BottomNaveBarScreen(),
+         bottomNavigationBar: const BottomNaveBarScreen(),
        );
      },
    );

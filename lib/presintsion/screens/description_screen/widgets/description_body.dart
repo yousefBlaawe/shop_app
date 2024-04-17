@@ -1,22 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:shop_app_clean/core/service/service_locator.dart';
 import 'package:shop_app_clean/domain/entite/home/data/products.dart';
-import 'package:shop_app_clean/presintsion/controller/favorites/bloc.dart';
-import 'package:shop_app_clean/presintsion/controller/favorites/event.dart';
-import 'package:shop_app_clean/presintsion/controller/favorites/state.dart';
-import 'package:shop_app_clean/presintsion/controller/productes/bloc.dart';
 import 'package:shop_app_clean/presintsion/screens/description_screen/widgets/icon_favorites.dart';
-import 'package:shop_app_clean/presintsion/screens/home_screen/Screens/products_screen/products_Screen.dart';
 import 'package:shop_app_clean/presintsion/screens/home_screen/home_screen.dart';
 
 class DescriptionBody extends StatelessWidget
 {
   final Products products;
-  DescriptionBody(this.products);
+  const DescriptionBody(this.products, {super.key});
   @override
   Widget build(BuildContext context) {
     return  Stack(
@@ -40,7 +30,7 @@ class DescriptionBody extends StatelessWidget
             height: MediaQuery.sizeOf(context).height*0.5,
             decoration: BoxDecoration(
                 color: Colors.teal.withOpacity(0.2),
-                borderRadius: BorderRadius.only(topRight: Radius.circular(70),topLeft: Radius.circular(70))
+                borderRadius: const BorderRadius.only(topRight: Radius.circular(70),topLeft: Radius.circular(70))
             ),
             child: Padding(
               padding: const EdgeInsets.all(5.0),
@@ -51,8 +41,8 @@ class DescriptionBody extends StatelessWidget
                     child: Row(
                       children: [
                         IconButton(onPressed: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context){
-                            return HomeScreen();
+                          Navigator.pop(context, MaterialPageRoute(builder: (context){
+                            return const HomeScreen();
                           }));
                         }, icon: Icon(Icons.arrow_back_ios_new,
                           color: Colors.teal[800],
@@ -69,7 +59,7 @@ class DescriptionBody extends StatelessWidget
                     child: Text(products.name!,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.w400,
                           color: Colors.white
@@ -77,29 +67,29 @@ class DescriptionBody extends StatelessWidget
                     ),
                   ),
                 const  SizedBox(height: 10,),
-                  Container(
+                  SizedBox(
                     height: 140,
                     width: double.infinity,
                     child: Text(products.description!,
                     maxLines: 6,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.w500,
                       color: Colors.white,
                         fontSize: 15
                     ),
                     ),
-                  ),SizedBox(height: 10,),
+                  ),const SizedBox(height: 10,),
                   Row(
                     children: [
                       Text('${products.price?.round()}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.w900,
                         color: Colors.white,
                         fontSize: 25
                       ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),

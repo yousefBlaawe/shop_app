@@ -1,10 +1,8 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:shop_app_clean/core/app_constante/app_const.dart';
+import 'package:shop_app_clean/core/app_constante/assets_const.dart';
 import 'package:shop_app_clean/core/service/service_locator.dart';
 import 'package:shop_app_clean/core/utils/cash_helper.dart';
 import 'package:shop_app_clean/core/utils/toast.dart';
@@ -16,12 +14,8 @@ import 'package:shop_app_clean/presintsion/screens/login_screen/login_screen.dar
 
 class RegisterBody extends StatelessWidget
 {
-  var emailController=TextEditingController();
-  var passwordController=TextEditingController();
-  var nameController=TextEditingController();
-  var phoneController=TextEditingController();
-  var formKey=GlobalKey<FormState>();
-   RegisterBody({super.key});
+
+   const RegisterBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,84 +28,27 @@ class RegisterBody extends StatelessWidget
         return Padding(
           padding: const EdgeInsets.all(20.0),
           child: Form(
-            key: formKey,
+            key: RegisterBloc.getObject(context).formKey,
             child: SingleChildScrollView(
               child: Column(
                 children: [
                   Container(
                     height: 220,
                     width: double.infinity,
-                    decoration:const BoxDecoration(
+                    decoration: BoxDecoration(
                       image:  DecorationImage(
-                          image:AssetImage('assets/images/pngegg.png') ),
+                          image:AssetImage(AssetsConst.logo) ),
                     ),
                   ),
                   const SizedBox(height: 50,),
                   TextFormField(
-                      controller: nameController,
+                      controller: RegisterBloc.getObject(context).nameController,
                       keyboardType: TextInputType.name,
                       validator: (val){
                         if (val!.isEmpty) {
                           return 'name address con\'t be empty';
                         }
-                      },
-                      decoration: InputDecoration(
-                          enabledBorder:OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                              borderSide:BorderSide(color: Colors.teal,style: BorderStyle.solid)
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                              borderSide:BorderSide(color: Colors.teal,style: BorderStyle.solid)
-                          ),
-                          label:const Text('Name',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              color: Colors.teal,
-                              fontSize: 18,
-                            ),
-                          ),
-                          prefixIcon: Icon(Icons.person_rounded,color: Colors.teal,)
-
-                      )
-                  ),
-                  const  SizedBox(height: 15,),
-                  TextFormField(
-                      controller: phoneController,
-                      keyboardType: TextInputType.phone,
-                      validator: (val){
-                        if (val!.isEmpty) {
-                          return 'phone address con\'t be empty';
-                        }
-                      },
-                      decoration: InputDecoration(
-                          enabledBorder:OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                              borderSide:BorderSide(color: Colors.teal,style: BorderStyle.solid)
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                              borderSide:BorderSide(color: Colors.teal,style: BorderStyle.solid)
-                          ),
-                          label:const Text('Phone Number',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              color: Colors.teal,
-                              fontSize: 18,
-                            ),
-                          ),
-                          prefixIcon: Icon(Icons.phone,color: Colors.teal,)
-
-                      )
-                  ),
-                  const  SizedBox(height: 15,),
-                  TextFormField(
-                      controller: emailController,
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (val){
-                        if (val!.isEmpty) {
-                          return 'email address con\'t be empty';
-                        }
+                        return null;
                       },
                       decoration: InputDecoration(
                           enabledBorder:OutlineInputBorder(
@@ -120,7 +57,67 @@ class RegisterBody extends StatelessWidget
                           ),
                           focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
-                              borderSide:BorderSide(color: Colors.teal,style: BorderStyle.solid)
+                              borderSide:const BorderSide(color: Colors.teal,style: BorderStyle.solid)
+                          ),
+                          label:const Text('Name',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              color: Colors.teal,
+                              fontSize: 18,
+                            ),
+                          ),
+                          prefixIcon: const Icon(Icons.person_rounded,color: Colors.teal,)
+
+                      )
+                  ),
+                  const  SizedBox(height: 15,),
+                  TextFormField(
+                      controller: RegisterBloc.getObject(context).phoneController,
+                      keyboardType: TextInputType.phone,
+                      validator: (val){
+                        if (val!.isEmpty) {
+                          return 'phone address con\'t be empty';
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                          enabledBorder:OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide:const BorderSide(color: Colors.teal,style: BorderStyle.solid)
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide:const BorderSide(color: Colors.teal,style: BorderStyle.solid)
+                          ),
+                          label:const Text('Phone Number',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              color: Colors.teal,
+                              fontSize: 18,
+                            ),
+                          ),
+                          prefixIcon: const Icon(Icons.phone,color: Colors.teal,)
+
+                      )
+                  ),
+                  const  SizedBox(height: 15,),
+                  TextFormField(
+                      controller: RegisterBloc.getObject(context).emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      validator: (val){
+                        if (val!.isEmpty) {
+                          return 'email address con\'t be empty';
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                          enabledBorder:OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide:const BorderSide(color: Colors.teal,style: BorderStyle.solid)
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide:const BorderSide(color: Colors.teal,style: BorderStyle.solid)
                           ),
                           label:const Text('Email',
                             style: TextStyle(
@@ -129,27 +126,28 @@ class RegisterBody extends StatelessWidget
                               fontSize: 18,
                             ),
                           ),
-                          prefixIcon: Icon(Icons.email_outlined,color: Colors.teal,)
+                          prefixIcon: const Icon(Icons.email_outlined,color: Colors.teal,)
 
                       )
                   ),
                   const  SizedBox(height: 15,),
                   TextFormField(
-                    controller: passwordController,
+                    controller: RegisterBloc.getObject(context).passwordController,
                     validator: (val){
                       if (val!.isEmpty) {
                         return 'password con\'t be empty';
                       }
+                      return null;
                     },
                     keyboardType: TextInputType.visiblePassword,
                     decoration: InputDecoration(
                       enabledBorder:OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
-                          borderSide:BorderSide(color: Colors.teal,style: BorderStyle.solid)
+                          borderSide:const BorderSide(color: Colors.teal,style: BorderStyle.solid)
                       ),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
-                          borderSide:BorderSide(color: Colors.teal,style: BorderStyle.solid)
+                          borderSide:const BorderSide(color: Colors.teal,style: BorderStyle.solid)
                       ),
                       label:const Text('Password',
                         style: TextStyle(
@@ -168,8 +166,8 @@ class RegisterBody extends StatelessWidget
                   Row(
                     children: [
                       IconButton(onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context){
-                          return LoginScreen();
+                        Navigator.pop(context, MaterialPageRoute(builder: (context){
+                          return const LoginScreen();
                         }));
                       }, icon:const Icon(FontAwesomeIcons.backward,color: Colors.teal,)),
                       ConditionalBuilder(
@@ -178,12 +176,12 @@ class RegisterBody extends StatelessWidget
                             return Expanded(
                               child: InkWell(
                                 onTap: (){
-                                  if (formKey.currentState!.validate()) {
-                                    RegisterBloc.getObject(context)..add(RegisterEvent(
-                                        name: nameController.text,
-                                        phone: phoneController.text,
-                                        email: emailController.text,
-                                        password: passwordController.text),);
+                                  if (RegisterBloc.getObject(context).formKey.currentState!.validate()) {
+                                    RegisterBloc.getObject(context).add(RegisterEvent(
+                                        name: RegisterBloc.getObject(context).nameController.text,
+                                        phone: RegisterBloc.getObject(context).phoneController.text,
+                                        email: RegisterBloc.getObject(context).emailController.text,
+                                        password: RegisterBloc.getObject(context).passwordController.text),);
                                   }
                                 },
                                 child: Container(
@@ -224,16 +222,12 @@ class RegisterBody extends StatelessWidget
       listener: (BuildContext context, RegisterState state) {
         if (state is SuccessRegisterState) {
           if (state.register.status) {
-            AppConst.token=state.register.registerData!.token!;
-            cachHelper.SaveData(key: 'name', val: state.register.registerData!.name);
-            cachHelper.SaveData(key: 'id', val: state.register.registerData!.id);
-            cachHelper.SaveData(key: 'email', val: state.register.registerData!.email);
-            cachHelper.SaveData(key: 'phone', val: state.register.registerData!.phone);
+
             cachHelper.SaveData(key: 'token', val: state.register.registerData?.token).
             then((value) {
               defultToast(message: state.register.message, state:ToastState.SUCCESS );
-              Navigator.push(context, MaterialPageRoute(builder: (context){
-                return HomeScreen();
+              Navigator.pop(context, MaterialPageRoute(builder: (context){
+                return const HomeScreen();
               }));
             }).catchError((error){
               print(error.toString());

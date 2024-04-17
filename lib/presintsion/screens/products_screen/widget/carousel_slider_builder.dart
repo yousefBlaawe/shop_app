@@ -1,12 +1,12 @@
-import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app_clean/presintsion/controller/productes/bloc.dart';
 import 'package:shop_app_clean/presintsion/controller/productes/state.dart';
 
 class CarouselSliderBuilder extends StatelessWidget {
+  const CarouselSliderBuilder({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomeProductsBloc, HomeProductsState>(
@@ -21,15 +21,15 @@ class CarouselSliderBuilder extends StatelessWidget {
                  enableInfiniteScroll: true,
                  reverse: false,
                  autoPlay: true,
-                 autoPlayInterval: Duration(seconds: 3),
-                 autoPlayAnimationDuration: Duration(seconds: 1),
+                 autoPlayInterval: const Duration(seconds: 3),
+                 autoPlayAnimationDuration: const Duration(seconds: 1),
                  initialPage: 0,
                  autoPlayCurve: Curves.fastOutSlowIn,
                  scrollDirection: Axis.horizontal,
                ),
                items: List.generate(
                    state.home.homeData!.bannersData!.length,
-                       (index) => CarouselItems(
+                       (index) => carouselItems(
                        state.home.homeData!.bannersData![index].image!)));
            break ;
          case LoadingGetData ():
@@ -39,7 +39,7 @@ class CarouselSliderBuilder extends StatelessWidget {
                backgroundColor: Colors.grey,
              ),
            );
-           break ;
+           break;
          default :
            return const Center(
              child:  CircularProgressIndicator(
@@ -52,17 +52,17 @@ class CarouselSliderBuilder extends StatelessWidget {
     );
   }
 
-  Widget CarouselItems(String image) {
+  Widget carouselItems(String image) {
 
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 8.0),
+      padding:  const EdgeInsets.symmetric(horizontal: 8.0),
       child: Container(
         height: 180,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
             image:  DecorationImage(
               fit: BoxFit.cover,
-              image: NetworkImage('${image}'),
+              image: NetworkImage(image),
             )),
       ),
     );

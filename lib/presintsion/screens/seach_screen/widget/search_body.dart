@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shop_app_clean/presintsion/controller/search/bloc.dart';
-import 'package:shop_app_clean/presintsion/controller/search/event.dart';
-
-import '../../../../../../domain/entite/seach/data/data_search.dart';
-import '../../../../../../domain/entite/seach/search.dart';
-import '../../../../../controller/search/state.dart';
-import '../../../home_screen.dart';
+import '../../../../domain/entite/seach/data/data_search.dart';
+import '../../../controller/search/bloc.dart';
+import '../../../controller/search/event.dart';
+import '../../../controller/search/state.dart';
+import '../../home_screen/home_screen.dart';
 
 class SearchBody extends StatelessWidget
 {
-  Color? color = Colors.teal[800];
-   late Widget itemOne=CircularProgressIndicator(color: Colors.teal,backgroundColor: Colors.grey,);
-  var searchController=TextEditingController();
-  var KEY=GlobalKey<FormState>();
+
+    Widget itemOne=const Center(child: Text('Not find result'),);
+
+  final formKey=GlobalKey<FormState>();
+
+  SearchBody({super.key});
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<BlocSearch,SearchDataState>(
@@ -22,16 +22,16 @@ class SearchBody extends StatelessWidget
             padding:
             const EdgeInsets.only(top: 20.0, left: 10, right: 10, bottom: 40),
             child: Form(
-              key: KEY,
+              key: formKey,
               child: Column(
                 children: [
                   Row(
                     children: [
                       IconButton(
                           onPressed: () {
-                            Navigator.push(context,
+                            Navigator.pop(context,
                                 MaterialPageRoute(builder: (context) {
-                                  return HomeScreen();
+                                  return const HomeScreen();
                                 }));
                           },
                           icon: Icon(
@@ -57,7 +57,7 @@ class SearchBody extends StatelessWidget
                   SizedBox(
                     height: 50,
                     child: TextFormField(
-                      controller: searchController,
+                      controller: BlocSearch.getObject(context).searchController,
                       onChanged: (val){
                         BlocSearch.getObject(context).add(SearchDataEvent(Data: val));
                       },
@@ -65,6 +65,7 @@ class SearchBody extends StatelessWidget
                         if (val!.isEmpty) {
                           return 'Search con\'t be empty';
                         }
+                        return null;
                       },
                       decoration: InputDecoration(
                           prefixIcon: Icon(
@@ -73,15 +74,15 @@ class SearchBody extends StatelessWidget
                           ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
-                            borderSide: BorderSide(color: color!),
+                            borderSide: BorderSide(color: Colors.teal[800]!),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
-                            borderSide: BorderSide(color: color!),
+                            borderSide: BorderSide(color: Colors.teal[800]!),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
-                            borderSide: BorderSide(color: color!),
+                            borderSide: BorderSide(color: Colors.teal[800]!),
                           ),
                           label: Text(
                             'Search',
@@ -92,7 +93,7 @@ class SearchBody extends StatelessWidget
                           )),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   itemOne,
@@ -117,10 +118,11 @@ class SearchBody extends StatelessWidget
                 );
                 break;
               case ZeroStateData():
-                itemOne = SizedBox();
+                itemOne = const Center(
+                  child: Text('Not find result'),
+                );
               default :
-                itemOne=CircularProgressIndicator(backgroundColor: Colors.grey,
-                color: Colors.teal,);
+                itemOne=const Center(child: Text('Not find result'));
             }
         }
     );
@@ -145,7 +147,7 @@ class SearchBody extends StatelessWidget
                          search!.image ,
                         ),
                         fit: BoxFit.cover),
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(20),
                         bottomLeft: Radius.circular(20))),
                 height: 120,
@@ -156,11 +158,11 @@ class SearchBody extends StatelessWidget
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
+                    SizedBox(
                       width: 200,
                       height: 60,
                       child:  Text(
-                        search!.name,
+                        search.name,
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,
                         style:const TextStyle(
@@ -169,7 +171,7 @@ class SearchBody extends StatelessWidget
                             color: Colors.teal),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Text(

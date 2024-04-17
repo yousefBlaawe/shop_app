@@ -1,25 +1,23 @@
-import 'dart:ui';
-
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:shop_app_clean/core/service/service_locator.dart';
+import 'package:shop_app_clean/core/app_constante/assets_const.dart';
 import 'package:shop_app_clean/core/utils/cash_helper.dart';
-import 'package:shop_app_clean/presintsion/controller/productes/bloc.dart';
-import 'package:shop_app_clean/presintsion/controller/productes/event.dart';
-import 'package:shop_app_clean/presintsion/screens/home_screen/Screens/products_screen/widget/carousel_slider_builder.dart';
-import 'package:shop_app_clean/presintsion/screens/home_screen/Screens/products_screen/widget/categories_listview.dart';
-import 'package:shop_app_clean/presintsion/screens/home_screen/Screens/products_screen/widget/grid_view_builder.dart';
-import 'package:shop_app_clean/presintsion/screens/home_screen/Screens/seach_screen/search_screen.dart';
+import '../../seach_screen/search_screen.dart';
+import 'carousel_slider_builder.dart';
+import 'categories_listview.dart';
+import 'grid_view_builder.dart';
 
-class ProductsBody extends StatelessWidget {
+
+class ProductsBody extends StatefulWidget {
+
+  const ProductsBody({super.key});
+
+  @override
+  State<ProductsBody> createState() => _ProductsBodyState();
+}
+
+class _ProductsBodyState extends State<ProductsBody> {
   String name=cachHelper.getData(key: 'name');
+
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -33,9 +31,9 @@ class ProductsBody extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const CircleAvatar(
+                     CircleAvatar(
                       radius: 20,
-                      backgroundImage: AssetImage('assets/images/yousef.jpg'),
+                      backgroundImage: AssetImage(AssetsConst.logo),
                     ),
                     const SizedBox(
                       width: 8,
@@ -51,7 +49,7 @@ class ProductsBody extends StatelessWidget {
                               color: Colors.teal[800]),
                         ),
                         Text(
-                          '$name',
+                          name,
                           style: TextStyle(
                               height: 1,
                               fontSize: 18,
@@ -60,7 +58,7 @@ class ProductsBody extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Spacer(),
+                    const Spacer(),
                     // Text(
                     //   'Wander&Buy',
                     //   style: GoogleFonts.lato(
@@ -73,7 +71,7 @@ class ProductsBody extends StatelessWidget {
                     InkWell(
                       onTap: (){
                         Navigator.push(context, MaterialPageRoute(builder: (context){
-                          return SearchScreen();
+                          return const SearchScreen();
                         }));
                       },
                       child: Container(
@@ -83,12 +81,12 @@ class ProductsBody extends StatelessWidget {
                         ),
                         height: 50,
                         width: 50,
-                        child: Icon(FontAwesomeIcons.search,color: Colors.white,),
+                        child: const Icon(Icons.search,color: Colors.white,),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 5,),
+                const SizedBox(height: 5,),
                 Container(height: 1,
                 width: double.infinity,
                   color: Colors.teal[800],
@@ -96,7 +94,7 @@ class ProductsBody extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                CarouselSliderBuilder(),
+                const CarouselSliderBuilder(),
                 const SizedBox(
                   height: 15,
                 ),
@@ -146,7 +144,7 @@ class ProductsBody extends StatelessWidget {
                 const SizedBox(
                   height: 8,
                 ),
-                SizedBox(height: 50, child: CategoriesListView()),
+              const  SizedBox(height: 50, child: CategoriesListView()),
                 const SizedBox(
                   height: 20,
                 ),

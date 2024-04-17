@@ -1,14 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app_clean/presintsion/controller/search/bloc.dart';
-import 'package:shop_app_clean/presintsion/screens/home_screen/Screens/seach_screen/widget/search_body.dart';
-import 'package:shop_app_clean/presintsion/screens/home_screen/home_screen.dart';
+import 'package:shop_app_clean/presintsion/screens/seach_screen/widget/search_body.dart';
+
 
 import '../../../../../core/service/service_locator.dart';
 
 class SearchScreen extends StatelessWidget {
+  const SearchScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(create: (context){

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app_clean/domain/use_case/search_data_use_case.dart';
 import 'package:shop_app_clean/presintsion/controller/search/event.dart';
@@ -5,6 +6,7 @@ import 'package:shop_app_clean/presintsion/controller/search/state.dart';
 
 class BlocSearch extends Bloc<SearchEvent,SearchDataState>
 {
+  final searchController=TextEditingController();
   static BlocSearch getObject(context)
   {
     return BlocProvider.of(context);

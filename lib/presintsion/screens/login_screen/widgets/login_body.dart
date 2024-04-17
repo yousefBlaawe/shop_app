@@ -1,10 +1,6 @@
-
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shop_app_clean/core/app_constante/app_const.dart';
 import 'package:shop_app_clean/core/service/service_locator.dart';
 import 'package:shop_app_clean/core/utils/cash_helper.dart';
 import 'package:shop_app_clean/core/utils/toast.dart';
@@ -18,9 +14,9 @@ import '../../register_screen/register_screen.dart';
 class LoginBody extends StatelessWidget
 {
 
-  var emailController=TextEditingController();
-  var passwordController=TextEditingController();
-  var formKey=GlobalKey<FormState>();
+  final formKey=GlobalKey<FormState>();
+
+  LoginBody({super.key});
   
   @override
   Widget build(BuildContext context) {
@@ -49,10 +45,10 @@ class LoginBody extends StatelessWidget
                      )
                  ),
                ),
-               Container(
+               const SizedBox(
                  height: 80,
                  width: 130,
-                 child:const Text('Welcome Home',
+                 child:Text('Welcome Home',
                    style: TextStyle(
                      height: 1,
                      fontWeight: FontWeight.w900,
@@ -63,21 +59,22 @@ class LoginBody extends StatelessWidget
                ),
                const SizedBox(height: 50,),
                TextFormField(
-                   controller: emailController,
+                   controller:  BlocLogin.getObject(context).emailController,
                    keyboardType: TextInputType.emailAddress,
                    validator: (val){
                      if (val!.isEmpty) {
                        return 'email address con\'t be empty';
                      }
+                     return null;
                    },
                    decoration: InputDecoration(
                        enabledBorder:OutlineInputBorder(
                            borderRadius: BorderRadius.circular(20),
-                           borderSide:BorderSide(color: Colors.teal,style: BorderStyle.solid)
+                           borderSide:const BorderSide(color: Colors.teal,style: BorderStyle.solid)
                        ),
                        focusedBorder: OutlineInputBorder(
                            borderRadius: BorderRadius.circular(20),
-                           borderSide:BorderSide(color: Colors.teal,style: BorderStyle.solid)
+                           borderSide:const BorderSide(color: Colors.teal,style: BorderStyle.solid)
                        ),
                        label:const Text('Email',
                          style: TextStyle(
@@ -86,28 +83,29 @@ class LoginBody extends StatelessWidget
                            fontSize: 18,
                          ),
                        ),
-                       prefixIcon: Icon(Icons.email_outlined,color: Colors.teal,)
+                       prefixIcon: const Icon(Icons.email_outlined,color: Colors.teal,)
 
                    )
                ),
                const  SizedBox(height: 15,),
                TextFormField(
-                 controller: passwordController,
+                 controller: BlocLogin.getObject(context).passwordController,
                  validator: (val){
                    if (val!.isEmpty) {
                      return 'password con\'t be empty';
                    }
+                   return null;
                  },
                  keyboardType: TextInputType.visiblePassword,
                  obscureText: BlocLogin.getObject(context).showPassword,
                  decoration: InputDecoration(
                      enabledBorder:OutlineInputBorder(
                          borderRadius: BorderRadius.circular(20),
-                         borderSide:BorderSide(color: Colors.teal,style: BorderStyle.solid)
+                         borderSide:const BorderSide(color: Colors.teal,style: BorderStyle.solid)
                      ),
                      focusedBorder: OutlineInputBorder(
                          borderRadius: BorderRadius.circular(20),
-                         borderSide:BorderSide(color: Colors.teal,style: BorderStyle.solid)
+                         borderSide:const BorderSide(color: Colors.teal,style: BorderStyle.solid)
                      ),
                      label:const Text('Password',
                        style: TextStyle(
@@ -116,9 +114,9 @@ class LoginBody extends StatelessWidget
                          fontSize: 18,
                        ),
                      ),
-                     prefixIcon: Icon(Icons.lock_open,color: Colors.teal,),
+                     prefixIcon: const Icon(Icons.lock_open,color: Colors.teal,),
                      suffixIcon: IconButton(onPressed: (){
-                       BlocLogin.getObject(context)..add(EventShowPassword());
+                       BlocLogin.getObject(context).add(EventShowPassword());
                      },icon:Icon(BlocLogin.getObject(context).iconPassword,color: Colors.teal,) )
 
                  ),
@@ -131,7 +129,7 @@ class LoginBody extends StatelessWidget
                    return InkWell(
                      onTap: (){
                        if (formKey.currentState!.validate()) {
-                         BlocLogin.getObject(context)..add(EventLogin(email: emailController.text, pasword: passwordController.text));
+                         BlocLogin.getObject(context).add(EventLogin(email: BlocLogin.getObject(context).emailController.text, pasword: BlocLogin.getObject(context).passwordController.text));
                        }
                      },
                      child: Container(
@@ -177,7 +175,7 @@ class LoginBody extends StatelessWidget
                    ),
                    TextButton(onPressed: (){
                      Navigator.push(context, MaterialPageRoute(builder: (context){
-                       return RegisterScreen();
+                       return const RegisterScreen();
                      }));
                    }, child: Text('Register', style: TextStyle(
                          fontSize: 20,
@@ -196,17 +194,11 @@ class LoginBody extends StatelessWidget
       listener: (context,state){
         if (state is SuccessLoginState) {
         if (state.loginModel.status) {
-          AppConst.token=state.loginModel.dataLogin!.token!;
-          print(state.loginModel.dataLogin!.token);
-          cachHelper.SaveData(key: 'name', val: state.loginModel.dataLogin!.name);
-          cachHelper.SaveData(key: 'id', val: state.loginModel.dataLogin!.id);
-          cachHelper.SaveData(key: 'email', val: state.loginModel.dataLogin!.email);
-          cachHelper.SaveData(key: 'phone', val: state.loginModel.dataLogin!.phone);
           cachHelper.SaveData(key: 'token', val: state.loginModel.dataLogin?.token)
               .then((value) {
                 defultToast(message: state.loginModel.message, state: ToastState.SUCCESS);
                 Navigator.push(context, MaterialPageRoute(builder: (context){
-                  return HomeScreen();
+                  return const HomeScreen();
                 })).catchError((error){
                   print(error.toString());
                 });

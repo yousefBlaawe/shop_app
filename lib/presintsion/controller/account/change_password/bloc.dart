@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app_clean/presintsion/controller/account/change_password/event.dart';
 import 'package:shop_app_clean/presintsion/controller/account/change_password/state.dart';
@@ -6,6 +7,8 @@ import '../../../../domain/use_case/change_password_use_case.dart';
 
 class BlocChangePassword extends Bloc<ChangePasswordEvent,ChangePasswordState>
 {
+  var currentPasswordController=TextEditingController();
+  var newPasswordController=TextEditingController();
   ChangePasswordUseCase changePasswordUseCase;
   static BlocChangePassword getObject(context)
   {

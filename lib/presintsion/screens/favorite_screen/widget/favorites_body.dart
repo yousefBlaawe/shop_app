@@ -1,5 +1,3 @@
-import 'package:dartz/dartz.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app_clean/core/service/service_locator.dart';
@@ -11,6 +9,8 @@ import '../../../../../../domain/entite/get_favorites/get_favorites_data_product
 
 class FavoritesBody extends StatelessWidget
 {
+  const FavoritesBody({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -51,7 +51,7 @@ class FavoritesBody extends StatelessWidget
                           getFavorites.image ,
                         ),
                         fit: BoxFit.cover),
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(20),
                         bottomLeft: Radius.circular(20))),
                 height: 120,
@@ -62,7 +62,7 @@ class FavoritesBody extends StatelessWidget
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
+                    SizedBox(
                       width: 200,
                       height: 60,
                       child:  Text(
@@ -75,7 +75,7 @@ class FavoritesBody extends StatelessWidget
                             color: Colors.teal),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Text(

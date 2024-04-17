@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app_clean/domain/entite/categories/categories_data_list.dart';
@@ -7,6 +6,8 @@ import 'package:shop_app_clean/presintsion/controller/categories/state.dart';
 
 class CategoriesBody extends StatelessWidget
 {
+  const CategoriesBody({super.key});
+
   @override
   Widget build(BuildContext context) {
    return BlocBuilder<CategoriesBloc,CategoriesState>(builder: (context,state){
@@ -19,7 +20,7 @@ class CategoriesBody extends StatelessWidget
            // physics: NeverScrollableScrollPhysics(),
            crossAxisCount: 2,
 
-           children:List.generate(state.categories.categoriesData.categoriesDataList.length, (index) =>GridViewItems(state.categories.categoriesData.categoriesDataList[index], context) ));
+           children:List.generate(state.categories.categoriesData.categoriesDataList.length, (index) =>gridViewItems(state.categories.categoriesData.categoriesDataList[index], context) ));
      }
      else
        {
@@ -27,7 +28,7 @@ class CategoriesBody extends StatelessWidget
        }
    });
   }
-  Widget GridViewItems(  CategoriesDataList categoriesDataList,context)
+  Widget gridViewItems(  CategoriesDataList categoriesDataList,context)
   {
     return   Padding(
       padding: const EdgeInsets.all(8.0),
@@ -65,12 +66,12 @@ class CategoriesBody extends StatelessWidget
                 ),
               ),
               Center(
-                child: Container(
+                child: SizedBox(
                   width: 100,
                   height: 50,
                   child: Text(
                     categoriesDataList.name,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
                       color: Colors.white

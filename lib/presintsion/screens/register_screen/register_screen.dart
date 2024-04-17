@@ -10,7 +10,7 @@ class RegisterScreen extends StatelessWidget
   Widget build(BuildContext context) {
   return  Scaffold(
     backgroundColor:Colors.blueGrey[50],
-    body: RegisterBody(),
+    body: const RegisterBody(),
   );
   }
 
