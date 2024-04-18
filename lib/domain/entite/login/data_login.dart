@@ -7,7 +7,7 @@ class DataLogin extends Equatable
   final String? email;
   final String? phone;
   final String? token;
-  DataLogin({
+  const DataLogin({
     required this.email,
     required this.name,
     required this.id,

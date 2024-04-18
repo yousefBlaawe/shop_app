@@ -5,7 +5,7 @@ import 'data_search.dart';
 class Data extends Equatable
 {
   final List<SearchData> searchData;
-  Data({required this.searchData});
+  const Data({required this.searchData});
 
   @override
   // TODO: implement props

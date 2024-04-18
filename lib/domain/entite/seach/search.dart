@@ -7,7 +7,7 @@ class Search extends Equatable
 {
   final bool status;
   final Data data;
-  Search({required this.data,required this.status});
+  const Search({required this.data,required this.status});
 
   @override
   // TODO: implement props

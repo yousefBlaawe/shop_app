@@ -5,7 +5,7 @@ import 'categories_data_list_model.dart';
 
 class CategoriesDataModel extends CategoriesData
 {
-  CategoriesDataModel({required super.categoriesDataList});
+  const CategoriesDataModel({required super.categoriesDataList});
   factory CategoriesDataModel.fromJaon(Map<String,dynamic>jason)
   {
     return CategoriesDataModel(categoriesDataList: List<CategoriesDataListModel>.from((jason['data']as List).map((e) => CategoriesDataListModel.formJaon(e))));

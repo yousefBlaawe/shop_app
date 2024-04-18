@@ -5,7 +5,7 @@ import 'get_favorites_data_list.dart';
 class GetFavoritesData extends Equatable
 {
   final List<GetFavoritesDataList>dataList;
-  GetFavoritesData({required this.dataList});
+  const GetFavoritesData({required this.dataList});
 
   @override
   // TODO: implement props

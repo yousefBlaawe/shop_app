@@ -7,7 +7,7 @@ class HomeData extends Equatable
 {
   final List<Banners>? bannersData;
   final List<Products>? productsData;
-  HomeData({required this.bannersData,required this.productsData});
+  const HomeData({required this.bannersData,required this.productsData});
 
   @override
   // TODO: implement props

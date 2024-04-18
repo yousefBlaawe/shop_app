@@ -2,7 +2,7 @@ import 'package:shop_app_clean/domain/entite/home/data/products.dart';
 
 class ProductsModel extends Products
 {
-  ProductsModel({required super.image, required super.id, required super.name, required super.discount, required super.description, required super.oldPrice, required super.price,required super.favorites});
+  const ProductsModel({required super.image, required super.id, required super.name, required super.discount, required super.description, required super.oldPrice, required super.price,required super.favorites});
   factory ProductsModel.fromJason(Map<String ,dynamic>?jason)
   {
     return ProductsModel(

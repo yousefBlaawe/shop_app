@@ -5,7 +5,7 @@ import 'categories_data_list.dart';
 class CategoriesData extends Equatable
 {
 final  List<CategoriesDataList> categoriesDataList;
-  CategoriesData({required this.categoriesDataList});
+  const CategoriesData({required this.categoriesDataList});
 
   @override
   // TODO: implement props

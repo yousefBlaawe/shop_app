@@ -7,7 +7,7 @@ class RegisterData extends Equatable
   final String? email;
   final int? id;
   final String? token;
-  RegisterData({required this.phone,required this.name,required this.token,required this.email,required this.id});
+  const RegisterData({required this.phone,required this.name,required this.token,required this.email,required this.id});
 
   @override
   // TODO: implement props

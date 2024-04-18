@@ -6,7 +6,7 @@ class SearchData extends Equatable
   final double price;
   final String image;
   final String name;
-  SearchData({required this.price,required this.image,required this.id,required this.name});
+  const SearchData({required this.price,required this.image,required this.id,required this.name});
 
   @override
   // TODO: implement props

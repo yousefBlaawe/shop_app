@@ -6,7 +6,7 @@ class GetFavorites extends Equatable
 {
   final bool status;
   final GetFavoritesData getFavoritesData;
-  GetFavorites({required this.getFavoritesData,required this.status});
+  const GetFavorites({required this.getFavoritesData,required this.status});
 
   @override
   // TODO: implement props

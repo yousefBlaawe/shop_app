@@ -3,7 +3,7 @@ import 'package:shop_app_clean/domain/entite/categories/categories_data_list.dar
 
 class CategoriesDataListModel extends CategoriesDataList
 {
-  CategoriesDataListModel({required super.image, required super.name});
+  const CategoriesDataListModel({required super.image, required super.name});
   factory CategoriesDataListModel.formJaon(Map<String,dynamic>jason)
   {
     return CategoriesDataListModel(image: jason['image'], name: jason['name']);

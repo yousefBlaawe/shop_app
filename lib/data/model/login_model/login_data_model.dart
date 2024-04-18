@@ -2,7 +2,7 @@ import 'package:shop_app_clean/domain/entite/login/data_login.dart';
 
 class LoginDataModel extends DataLogin
 {
-  LoginDataModel({required super.email, required super.name, required super.id, required super.phone, required super.token});
+  const LoginDataModel({required super.email, required super.name, required super.id, required super.phone, required super.token});
   factory LoginDataModel.FromJason(Map<String,dynamic>?jason){
     return LoginDataModel(
         email: jason?['email'],

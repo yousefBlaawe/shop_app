@@ -4,7 +4,7 @@ import 'package:shop_app_clean/domain/entite/get_favorites/get_favorites_data_pr
 class GetFavoritesDataList extends Equatable
 {
   final GetFavoritesDataProducts getFavoritesDataproducts;
-  GetFavoritesDataList({required this.getFavoritesDataproducts});
+  const GetFavoritesDataList({required this.getFavoritesDataproducts});
 
   @override
   // TODO: implement props

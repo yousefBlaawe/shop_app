@@ -6,7 +6,7 @@ class Register extends Equatable
   final bool status;
   final String message;
   final RegisterData? registerData;
-  Register({required this.registerData,required this.status,required this.message});
+  const Register({required this.registerData,required this.status,required this.message});
 
   @override
   // TODO: implement props

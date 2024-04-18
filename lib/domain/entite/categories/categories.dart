@@ -6,7 +6,7 @@ class Categories extends Equatable
 {
   final bool status;
   final CategoriesData categoriesData;
-  Categories({required this.categoriesData,required this.status});
+  const Categories({required this.categoriesData,required this.status});
 
   @override
   // TODO: implement props

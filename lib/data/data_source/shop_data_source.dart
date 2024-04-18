@@ -4,7 +4,6 @@ import 'package:shop_app_clean/core/exceptions/exceptions.dart';
 import 'package:shop_app_clean/core/utils/dio_helper.dart';
 import 'package:shop_app_clean/data/model/account_model/change_password_model.dart';
 import 'package:shop_app_clean/data/model/login_model/login_model.dart';
-import 'package:shop_app_clean/domain/repository/base_shop_repository.dart';
 import 'package:shop_app_clean/domain/use_case/change_password_use_case.dart';
 import 'package:shop_app_clean/domain/use_case/favorites_use_case.dart';
 import 'package:shop_app_clean/domain/use_case/login_use_case.dart';
@@ -32,10 +31,10 @@ class ShopDataSource extends BaseShopDataSource
 {
 
   @override
-  Future<LoginModel?> getLoginData( parameter)async {
+  Future<LoginModel?> getLoginData( loginParameter)async {
     final response=await DioHelper.postData(path: AppConst.login, data:{
-      'email':parameter.email,
-      'password':parameter.password,
+      'email':loginParameter.email,
+      'password':loginParameter.password,
     } );
     if (response?.statusCode==200) {
 
@@ -56,7 +55,7 @@ class ShopDataSource extends BaseShopDataSource
       'password':registerParameter.password,
       'image':AppConst.image,
     });
-    print('get datasource');
+
     if (response?.statusCode == 200) {
       return RegisterModel.fromJason(response?.data);
     }
@@ -98,8 +97,8 @@ class ShopDataSource extends BaseShopDataSource
   Future<FavoritesModel> getFavoritesDate(FavoritesParameter favoritesParameter) async{
     final result=await DioHelper.postData(path: AppConst.favorites, data: {'product_id':favoritesParameter.id},token: AppConst.token);
     if (result?.statusCode==200) {
-      print('${result!.data} favorites');
-      return FavoritesModel.fromJason(result?.data);
+
+      return FavoritesModel.fromJason(result!.data);
     }
     else
       {
@@ -111,9 +110,9 @@ class ShopDataSource extends BaseShopDataSource
   @override
   Future<GetFavoritesModel> getFavoritesDataProducts()async {
    final result=await DioHelper.getData(url: AppConst.favorites,token: AppConst.token);
-   print(result.toString() + 'get favorites');
+
    if (result.statusCode==200) {
-     print('success get data');
+
      return GetFavoritesModel.fromJason(result?.data);
    }
    else

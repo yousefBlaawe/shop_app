@@ -7,7 +7,7 @@ class Login extends Equatable
   final bool status;
   final String message;
   final DataLogin? dataLogin;
-  Login({required this.dataLogin,required this.message,required this.status});
+  const Login({required this.dataLogin,required this.message,required this.status});
   @override
   // TODO: implement props
   List<Object?> get props => [status,message,dataLogin];

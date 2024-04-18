@@ -4,7 +4,7 @@ class Banners extends Equatable
 {
   final int? id;
   final String? image;
-  Banners({required this.id,required this.image});
+  const Banners({required this.id,required this.image});
 
   @override
   // TODO: implement props

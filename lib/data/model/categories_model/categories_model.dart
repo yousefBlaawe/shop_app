@@ -1,11 +1,9 @@
 import 'package:shop_app_clean/domain/entite/categories/categories.dart';
-import 'package:shop_app_clean/domain/entite/categories/categories_data.dart';
-
 import 'categories_data_model.dart';
 
 class CategoriesModel extends Categories
 {
-  CategoriesModel({required super.categoriesData, required super.status});
+  const CategoriesModel({required super.categoriesData, required super.status});
   factory CategoriesModel.fromJason(Map<String,dynamic>jason)
   {
     return CategoriesModel(categoriesData: CategoriesDataModel.fromJaon(jason['data']), status: jason['status']);

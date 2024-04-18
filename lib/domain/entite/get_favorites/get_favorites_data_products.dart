@@ -5,7 +5,7 @@ class GetFavoritesDataProducts extends Equatable
   final String name;
   final String image;
   final double price;
-  GetFavoritesDataProducts({required this.name,required this.image,required this.price});
+  const GetFavoritesDataProducts({required this.name,required this.image,required this.price});
 
   @override
   // TODO: implement props

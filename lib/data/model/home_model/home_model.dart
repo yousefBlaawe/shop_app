@@ -3,7 +3,7 @@ import 'package:shop_app_clean/domain/entite/home/home.dart';
 
 class HomeModel extends Home
 {
-  HomeModel({required super.homeData, required super.status});
+  const HomeModel({required super.homeData, required super.status});
   factory HomeModel.fromJason(Map<String,dynamic>?jason){
     return HomeModel(
         homeData: HomeDataModel.formJason(jason?['data']),

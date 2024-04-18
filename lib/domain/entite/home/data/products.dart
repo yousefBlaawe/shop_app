@@ -10,7 +10,7 @@ class Products extends Equatable
   final String? description;
   final int? discount;
   final bool?favorites;
-  Products({required this.image,required this.id,required this.name,required this.discount,required this.description,required this.oldPrice,required this.price,required this.favorites});
+  const Products({required this.image,required this.id,required this.name,required this.discount,required this.description,required this.oldPrice,required this.price,required this.favorites});
 
   @override
   // TODO: implement props

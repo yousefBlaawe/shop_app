@@ -4,7 +4,7 @@ import 'package:shop_app_clean/domain/entite/home/data/home_data.dart';
 
 class HomeDataModel extends HomeData
 {
-  HomeDataModel({required super.bannersData, required super.productsData});
+  const HomeDataModel({required super.bannersData, required super.productsData});
   factory HomeDataModel.formJason(Map<String,dynamic>?jason)
   {
     return HomeDataModel(

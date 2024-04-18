@@ -4,7 +4,7 @@ class CategoriesDataList extends Equatable
 {
   final String name;
   final String image;
-  CategoriesDataList({required this.image,required this.name});
+  const CategoriesDataList({required this.image,required this.name});
 
   @override
   // TODO: implement props
